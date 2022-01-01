@@ -14,16 +14,31 @@
  * }
  */
 class Solution {
-    int result=0;
+   
     public int maxAncestorDiff(TreeNode root) {
         if(root==null) return 0;
     
     result=0;
-    helper(root,root.val,root.val);
+    result = helper(root,root.val,root.val);
     return result;
     }
+//     o(n)
+    private int  helper(TreeNode node, int curMax, int curMin) {
+        if (node == null) {
+            return curMax - curMin;
+        }
+        // update `result`
+       
+        // update the max and min
+        curMax = Math.max(curMax, node.val);
+        curMin = Math.min(curMin, node.val);
+//         maximum from eft and right subtree
+        return Math.max(helper(node.left,curMax,curMin), helper(node.right, curMax,curMin));
+    }
     
-    void helper(TreeNode node, int curMax, int curMin) {
+//     o(n^2)
+     int result=0;
+    void helper2(TreeNode node, int curMax, int curMin) {
         if (node == null) {
             return;
         }
