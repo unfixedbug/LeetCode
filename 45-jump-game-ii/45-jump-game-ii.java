@@ -7,7 +7,10 @@ class Solution {
             if(i==currend){
                 jumps++;
                 currend = currfarthest;
+                
+                if(currend >= nums.length -1) return jumps;
             }
+            
         }
         return jumps;
     }
