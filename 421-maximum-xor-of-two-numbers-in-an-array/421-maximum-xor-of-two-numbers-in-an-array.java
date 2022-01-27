@@ -57,3 +57,4 @@ class Solution {
         return max;
     }
 }
+// https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/discuss/1722805/Java-A-very-detailed-explanation-with-sim.-understanding-or-Trie-%2B-Bit
