@@ -12,7 +12,7 @@ class Solution {
         
         int dp[] = new int[nums.length];
         dp[start]=nums[start];
-        dp[start+1] = Math.max(nums[start], nums[start+1]);
+        dp[start+1] = Math.max(dp[start], nums[start+1]);
         
         for(int i=start+2; i<= end;i++){
             dp[i] = Math.max(dp[i-1], nums[i]+dp[i-2]);
