@@ -20,7 +20,7 @@ class Solution {
             
         List<Integer> prev = getRowRecursive(rowIndex - 1);
         
-        result.add(1);
+        result.add(1);// recursion stops when row is tend to one
         for (int i = 1; i < rowIndex; ++i) {
             result.add(prev.get(i - 1) + prev.get(i - 0));
         }
