@@ -16,26 +16,30 @@
 class BSTIterator {
     
     private TreeNode now;
-    private Stack<TreeNode> inorder;
+    private Queue<Integer> inorder;
     
     public BSTIterator(TreeNode root) {
         now = root;    
-        inorder = new Stack();
-    }
-   
-    public int next() {
-        while(now!=null){// traverse, get its left one first
-            inorder.push(now);
-            now = now.left;// over the left most?
-        }
-        TreeNode next = inorder.pop();// traverse its right 
-        now = next.right;
-        // return the popped node
-        return next.val;
+        inorder = new PriorityQueue<Integer>();
+        traversal(root);
     }
     
+    
+    private void traversal(TreeNode root){
+        if(root!=null){
+            traversal(root.left);
+            inorder.add(root.val);
+            traversal(root.right);
+        }
+    }
+    
+    public int next() {
+        int next = inorder.poll();
+        return next;
+    }
+
     public boolean hasNext() {
-        return now!=null || !inorder.isEmpty();
+        return !inorder.isEmpty();
     }
 }
 
