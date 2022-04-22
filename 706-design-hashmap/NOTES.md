@@ -1,0 +1,2 @@
+**Optimal with hashes**
+​
