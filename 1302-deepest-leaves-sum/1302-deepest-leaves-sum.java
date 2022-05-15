@@ -15,27 +15,19 @@
  */
 class Solution {
     public int deepestLeavesSum(TreeNode root) {
-        int height = depth(root);
-        return helper(root,height,1);
-    }
-    public int depth(TreeNode root){
-        if(root==null)return 0;
-        return Math.max(depth(root.left), depth(root.right))+1;
-    }
-    public int helper(TreeNode root,int d,int now){
-        
-            int ans=0;
-        if(now==d){
-            return root.val;
+        Queue<TreeNode> q=new LinkedList<>();
+        int sum=0;
+        q.offer(root);
+        while(!q.isEmpty()) {
+            int size=q.size();
+            sum=0;
+            for(int i=0;i<size;i++) {
+                TreeNode cur=q.poll();
+                sum+=cur.val;
+                if(cur.left!=null) q.offer(cur.left);
+                if(cur.right!=null) q.offer(cur.right);
+            }
         }
-        else {
-            if(root.right!=null){
-                ans+=helper(root.right,d,now+1);
-            }
-            if(root.left!=null){
-                ans+=helper(root.left,d,now+1);
-            }
-    
-        return ans;
-    }}
+        return sum;
+    }
 }
