@@ -6,10 +6,10 @@ class Solution {
         
         grid[0][0]=1;
         
-        for(int i=1; i<r;i++){
-            grid[i][0] = (grid[i][0]==0 && grid[i-1][0]==1)?1:0;
+        for(int i=1; i<r;i++){ //filling the first row
+            grid[i][0] = (grid[i][0]==0 && grid[i-1][0]==1)?1:0; // even if a signle element is 1, we cant traverse right
         }
-        for(int i=1; i<c;i++){
+        for(int i=1; i<c;i++){ //filling the first column,
             grid[0][i] = (grid[0][i]==0 && grid[0][i-1]==1)?1:0;
         }
     
