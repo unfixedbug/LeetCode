@@ -1,0 +1,3 @@
+**Strivers approach**
+```java
+```
