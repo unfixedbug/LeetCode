@@ -1,1 +1,1 @@
-​
+[striver](https://www.youtube.com/watch?v=l0YC3876qxg)
