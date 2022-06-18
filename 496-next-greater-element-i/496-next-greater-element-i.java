@@ -1,28 +1,33 @@
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         
-        HashMap<Integer,Integer> nxg = new HashMap<>();
-        int ans[] = new int[nums1.length];
-        Stack<Integer> st = new Stack<>();
-        
-        st.push(nums2[nums2.length-1]);
-        nxg.put(nums2[nums2.length-1],-1);
-        // remove smaller elements
-        // topmost element is the next greater element
-        // add h=itself to the top
-        for(int i=nums2.length-2;i>=0;i--){
-            while(!st.isEmpty() && st.peek()<=nums2[i])st.pop();
-            if(st.isEmpty()){// itself is the greatest element
-                nxg.put(nums2[i],-1);
-            }
-            else nxg.put(nums2[i],st.peek());
-            st.push(nums2[i]);
+        Map<Integer,Integer> map = new HashMap<>();
+        Deque<Integer> stack = new ArrayDeque<>();
+                
+        for (int i =nums2.length-1;i>=0;i--){            
+            while (!stack.isEmpty() && nums2[i]> stack.peek()){
+                stack.pop();
+            }            
+            int value = (stack.isEmpty())?-1:stack.peek();
+            map.put(nums2[i],value);
+            stack.push(nums2[i]);  
         }
-        for(int i=0;i<nums1.length;i++){
-            ans[i] = nxg.get(nums1[i]);
+        
+       int [] result = new int [nums1.length];
+        for (int i = 0;i<nums1.length;i++){
+             result[i]=map.get(nums1[i]);
         }
-        return ans;
-        
-        
+            
+        return result;
     }
 }
+
+// O(n) time
+// O(n) space
+// -->  Map <>  
+// ---> Stack<>
+
+
+
+
+
