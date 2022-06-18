@@ -1,6 +1,6 @@
 class Solution {
     public boolean isValid(String s) {
-		char[] stack = new char[s.length()];
+       char[] stack = new char[s.length()];
 		int head = 0;
 		for(char c : s.toCharArray()) {
 			switch(c) {
@@ -21,6 +21,5 @@ class Solution {
 			}
 		}
 		return head == 0;
-
-	}
+    }
 }
