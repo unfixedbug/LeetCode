@@ -1,0 +1,1 @@
+[op soln](https://leetcode.com/problems/furthest-building-you-can-reach/discuss/2176616/Visual-Explanation-or-JAVA-Max-Heap)
