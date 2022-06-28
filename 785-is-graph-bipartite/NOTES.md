@@ -1,0 +1,1 @@
+[ez](https://leetcode.com/problems/is-graph-bipartite/discuss/1990706/c-clean-short-code)
