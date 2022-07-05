@@ -1,29 +1,44 @@
 class Solution {
-    public int search(int[] nums, int target) {
-        int lo=0,hi = nums.length-1;
-        while(lo<hi){
-            int mid = lo + (hi-lo)/2;
-            
-            if(nums[mid]==target)return mid;
-            
-            if(nums[lo] <= nums[mid]){ // left side of the pivotted array
-                if(target >= nums[lo] && target < nums[mid]){ // between lo - mid
-                    hi =  mid-1;
-                }else{ // between mid-hi
-                    lo = mid+1;
-                }
-            }else{ // right side of the pivoted array
-                if(target > nums[mid] && target <=nums[hi]){ // between
-                    lo = mid+1;
-                } 
-                else{
-                    hi = mid-1;
-                }
-            }
-        }
-        
-        return nums[lo]==target ? lo:-1;
+    public int search(int[] arr, int key) {
+        int n=arr.length;
+        int pivot = findPivot(arr, 0, n - 1);
+ 
+        if (pivot == -1)
+            return binarySearch(arr, 0, n - 1, key);
+ 
+        if (arr[pivot] == key)
+            return pivot;
+        if (arr[0] <= key)
+            return binarySearch(arr, 0, pivot - 1, key);
+        return binarySearch(arr, pivot + 1, n - 1, key);
     }
-    
-    
+ 
+    static int findPivot(int arr[], int low, int high)
+    {
+        if (high < low)
+            return -1;
+        if (high == low)
+            return low;
+        int mid = (low + high) / 2;
+        if (mid < high && arr[mid] > arr[mid + 1])
+            return mid;
+        if (mid > low && arr[mid] < arr[mid - 1])
+            return (mid - 1);
+        if (arr[low] >= arr[mid])
+            return findPivot(arr, low, mid - 1);
+        return findPivot(arr, mid + 1, high);
+    }
+ 
+    static int binarySearch(int arr[], int low, int high, int key)
+    {
+        if (high < low)
+            return -1;
+ 
+        int mid = (low + high) / 2;
+        if (key == arr[mid])
+            return mid;
+        if (key > arr[mid])
+            return binarySearch(arr, (mid + 1), high, key);
+        return binarySearch(arr, low, (mid - 1), key);
+    }
 }
