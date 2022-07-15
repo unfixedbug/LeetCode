@@ -104,7 +104,7 @@ class Solution{
     {
         // code here 
         int start=0,end=ar.length-1;
-        for(int i=0;i<=b;){
+        for(int i=0;i<=end;){
             if(ar[i]<a){
                 swap(start,i,ar);
                 i++;
