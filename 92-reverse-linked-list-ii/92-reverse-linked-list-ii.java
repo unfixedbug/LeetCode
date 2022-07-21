@@ -24,6 +24,8 @@ class Solution {
         ListNode leftConnection = prev;
         ListNode tail = curr; // tail will be connected to right connection
         
+        
+        //reverse the list iteratively
         ListNode nextd=null;
         while(right-->0){
             nextd = curr.next;
