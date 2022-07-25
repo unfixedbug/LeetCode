@@ -1,11 +1,22 @@
 class Solution {
-    public int minimumTotal(List<List<Integer>> triangle) {
-        for(int i = triangle.size() -2;i>=0;i--){//bottom up 
-            for(int j=0;j<=i;j++){
-                //set ith lists, jth block to be the minimum of the  [i+1,j]th, [i+1,j+1]th
-                triangle.get(i).set(j, triangle.get(i).get(j) + Math.min(triangle.get(i+1).get(j), triangle.get(i+1).get(j+1)));
-            }
+    int dp[][];
+    public int minimumTotal(List<List<Integer>> tri) {
+        dp = new int[tri.size()][tri.size()];
+        for(int a[]:dp){
+            Arrays.fill(a,-1);
         }
-        return triangle.get(0).get(0);
+        return recur(tri,0,0);
+        
+    }
+    
+    private int recur(List<List<Integer>> tri, int i, int j){
+        if(i==tri.size()-1){
+            return tri.get(i).get(j);
+        }
+        if(dp[i][j]!=-1)return dp[i][j];
+        int ans=tri.get(i).get(j);
+        int down = recur(tri,i+1,j);//tri.get(i+1).get(j);
+        int diagonal = recur(tri,i+1,j+1);//tri.get(i+1).get(j+1);
+        return dp[i][j]=ans+Math.min(down,diagonal);
     }
 }
