@@ -1,15 +1,22 @@
 class Solution {
+    int dp[][];
     public int minPathSum(int[][] grid) {
-        int height = grid.length;
-            int width = grid[0].length;
-            for (int row = 0; row < height; row++) {
-                for (int col = 0; col < width; col++) {
-                    if(row == 0 && col == 0) grid[row][col] = grid[row][col];
-                    else if(row == 0 && col != 0) grid[row][col] = grid[row][col] + grid[row][col - 1];
-                    else if(col == 0 && row != 0) grid[row][col] = grid[row][col] + grid[row - 1][col];
-                    else grid[row][col] = grid[row][col] + Math.min(grid[row - 1][col], grid[row][col - 1]);
-                }
-            }
-            return grid[height - 1][width - 1];
+        int n = grid.length;
+        int m = grid[0].length;
+        dp = new int[n][m];
+        for(int a[]:dp){
+            Arrays.fill(a,-1);
+        }
+        return recursion(n-1,m-1,grid);
+    }
+    
+    private int recursion(int i, int j,int[][]grid){
+        
+        if(i==0 && j==0)return grid[0][0];
+        if(i<0|| j<0) return Integer.MAX_VALUE;
+        if(dp[i][j]!=-1)return dp[i][j];
+        int up =  recursion(i-1,j,grid); // travelling from upside
+        int left = recursion(i,j-1,grid); // travelling from righside
+        return dp[i][j] = grid[i][j] + Math.min(up,left);
     }
 }
