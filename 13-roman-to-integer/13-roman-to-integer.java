@@ -1,31 +1,26 @@
 class Solution {
-    int val[] = {1,5,10,50,100,500,1000};
-    char ch[] = {'I','V','X','L','C','D','M'};
     public int romanToInt(String s) {
-        int ans=0;
-        int n=s.length();
-        for(int i=0;i<n;i++){
-            char c = s.charAt(i);
-            if(i+1<n){
-                int cur=giveValue(c);
-                int next = giveValue(s.charAt(i+1));
-                if(cur<next){
-                    ans+= next-cur;
-                    i+=1;
-                }else{
-                    ans+=cur;
-                }
+        Map<Character, Integer> romanNo = new HashMap<>();
+        romanNo.put('I', 1);
+        romanNo.put('V', 5);
+        romanNo.put('X', 10);
+        romanNo.put('L', 50);
+        romanNo.put('C', 100);
+        romanNo.put('D', 500);
+        romanNo.put('M', 1000);
+        
+        int n = s.length();
+        int num = romanNo.get(s.charAt(n - 1));
+        
+        for (int i = n - 2; i >= 0; i--) {
+            if (romanNo.get(s.charAt(i)) >= romanNo.get(s.charAt(i + 1))) {
+                num += romanNo.get(s.charAt(i));
+            } else {
+                num -= romanNo.get(s.charAt(i));
             }
-            else ans+=giveValue(c);
         }
-        return ans;
-    
+        return num;
     }
     
-    private int giveValue(char c){
-        for(int i=0;i<7;i++){
-            if(ch[i]==c)return val[i];
-        }
-        return 0;
-    }
+   
 }
