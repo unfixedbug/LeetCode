@@ -24,18 +24,17 @@ class Solution {
     private void dfs(TreeNode root, int sum,ArrayList<Integer> cur){
         if(root==null)return;
         // if(root.val>sum)return;
-        cur.add(root.val);
+        
         
         if(root.left==null && root.right==null &&sum==root.val){
+            cur.add(root.val);
             res.add(new ArrayList(cur));
             cur.remove(cur.size()-1);
             return;
         }
-        else{
-            dfs(root.right,sum-root.val,cur);
-            dfs(root.left,sum-root.val,cur);
-        }
-     
+        cur.add(root.val);
+        dfs(root.right,sum-root.val,cur);
+        dfs(root.left,sum-root.val,cur);
         cur.remove(cur.size()-1);
     }
 }
