@@ -2,9 +2,11 @@ class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         for (int integer : arr) {
+            //let the first k numbers be closer to k
             if (k > 0) {
                 minHeap.offer(integer);
                 k--;
+                // if done with the first k, take a sliding window , if the upcoming interger is more near to x than the smallest in the window, take the window forward, removing the smallest element ..EZ
             } else if (Math.abs(minHeap.peek() - x) > Math.abs(integer - x)) {
                 minHeap.poll();
                 minHeap.offer(integer);
